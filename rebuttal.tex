@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{xcolor}
+%\usepackage[dvipsnames]{xcolor} % extended named colors
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{csquotes}
+% \usepackage{soul} % provides \hl{} for highlighting text
+
+% Uncomment as needed
+% \usepackage{graphicx}
+% \usepackage{amsmath,amsfonts,amssymb,amsthm}
+% \usepackage{array}
+% \usepackage{booktabs}
+% \usepackage{natbib}
+% \usepackage{url}
+% \usepackage{marginnote}
+
+\definecolor{mygray}{rgb}{.9, 0.9, 0.9}
+\definecolor{mygreen}{rgb}{0.4, 0.8, 0.4}
+% \definecolor{myred}{rgb}{.8, 0.3, 0.3}
+
+% Shared tcolorbox style
+\tcbset{
+  rebuttalbox/.style={
+    boxrule=0pt,
+    breakable,
+    before skip=0.5em,
+  }
+}
+
+\newcommand{\issue}[1]{%
+\begin{tcolorbox}[rebuttalbox, colback=white, before upper={\emergencystretch=3em}]
+  #1
+\end{tcolorbox}
+}
+\newcommand{\answer}[1]{%
+\begin{tcolorbox}[rebuttalbox, colback=mygray]
+    {\it\footnotesize Response}\\[.5em]
+    #1
+\end{tcolorbox}
+}
+\newcommand{\changed}[1]{%
+\begin{tcolorbox}[rebuttalbox, colback=mygreen]
+    \hfill{\it\footnotesize Quote from new version of manuscript}\\[.5em]
+    #1
+\end{tcolorbox}
+}
+
+\newcommand{\issuetodo}[1]{%
+\begin{tcolorbox}[rebuttalbox, colback=cyan]
+    #1
+\end{tcolorbox}
+}
+
+\newcommand{\issueothers}[1]{%
+\begin{tcolorbox}[rebuttalbox, colback=orange]
+    #1
+\end{tcolorbox}
+}
+
+
+\title{
+  Point-by-point reply to the reviewer comments\\[5mm]
+  \large{Manuscript ID: LOREM-IPSUM-1234569}\\
+  \large{Title: A Paper about Things and Stuff}
+}
+
+\begin{document}
+\maketitle
+
+% % just in case editor has written something and we want to reply or we want to address editor + reviewers together
+% \section*{Associate Editor}
+
+% \issue{Dear Dr. NAME,
+
+%  }
+
+% \newpage
+
+\section*{Reviewer 1}
+
+\issue{The thing is bad in ways because of stuff}
+
+\answer{
+  We fixed the thing about the stuff.
+  As the reviewer noted, \enquote{the thing is bad}, and we have addressed this.
+
+  \changed{
+    Our stuff has a variety of things, and also stuff.
+  }
+}
+
+% If you want to separate reviewers cleanly
+% \newpage
+
+\section*{Reviewer 2}
+
+\issue{I don't like your face}
+
+\answer{
+  Oh no
+
+  \issuetodo{
+    Get face replacements
+  }
+
+}
+
+% Include if you need citations
+% \bibliographystyle{abbrvnat}
+% \bibliography{reference.bib}
+\end{document}
