@@ -18,8 +18,10 @@
 % \usepackage{url}
 % \usepackage{marginnote}
 
-\definecolor{mygray}{rgb}{.9, 0.9, 0.9}
-\definecolor{mygreen}{rgb}{0.4, 0.8, 0.4}
+\definecolor{mygray}{HTML}{EBEBEB}
+\definecolor{mygreen}{HTML}{75D279}
+\definecolor{mycyan}{HTML}{00C6F5}
+\definecolor{myorange}{HTML}{FFB300}
 % \definecolor{myred}{rgb}{.8, 0.3, 0.3}
 
 % --- Counters for automatic numbering and cross-referencing ---
@@ -76,14 +78,14 @@
 }
 
 \newcommand{\issuetodo}[1]{%
-\begin{tcolorbox}[rebuttalbox, colback=cyan]
+\begin{tcolorbox}[rebuttalbox, colback=mycyan]
     \hfill{\it\footnotesize TODO (main author)}\\[.5em]
     #1
 \end{tcolorbox}
 }
 
 \newcommand{\issueothers}[1]{%
-\begin{tcolorbox}[rebuttalbox, colback=orange]
+\begin{tcolorbox}[rebuttalbox, colback=myorange]
     \hfill{\it\footnotesize TODO (co-authors)}\\[.5em]
     #1
 \end{tcolorbox}

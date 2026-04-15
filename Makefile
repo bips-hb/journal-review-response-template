@@ -1,5 +1,5 @@
 TEX := rebuttal.tex
-TYP := rebuttal.typ
+TYP := rebuttal-typst.typ
 
 .PHONY: help
 help: ## Show available targets

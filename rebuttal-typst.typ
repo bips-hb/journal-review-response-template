@@ -16,10 +16,10 @@
 }
 
 // --- Colors (matching LaTeX version) ---
-#let mygray = rgb(230, 230, 230)   // LaTeX: {.9, .9, .9}
-#let mygreen = rgb(102, 204, 102)  // LaTeX: {0.4, 0.8, 0.4}
-#let mycyan = rgb(0, 255, 255)     // LaTeX: cyan
-#let myorange = rgb(255, 165, 0)   // LaTeX: orange
+#let mygray = rgb("#EBEBEB")
+#let mygreen = rgb("#75D279")
+#let mycyan = rgb("#00C6F5")        // custom cyan
+#let myorange = rgb("#FFB300")
 
 // --- Counters ---
 #let _reviewer-counter = counter("reviewer")
@@ -32,13 +32,17 @@
 }
 
 // --- Rebuttal box helpers ---
+
+// Radius for issue and answer boxes
+#let box-radius = 3pt
+
 #let _rebuttal-box(fill: white, label: none, label-align: right, body) = {
   v(0.3em)
   block(
     width: 100%,
     fill: fill,
     inset: 8pt,
-    radius: 2pt,
+    radius: box-radius,
     {
       if label != none {
         align(label-align, text(size: 0.8em, style: "italic", label))
@@ -69,10 +73,11 @@
       supplement: none,
       numbering: _ => tag,
       block(
+        stroke: 0.1pt,
         width: 100%,
         fill: white,
         inset: 8pt,
-        radius: 0pt,
+        radius: box-radius,
         {
           text(weight: "bold", size: 0.9em, tag)
           v(0.2em)
@@ -120,11 +125,11 @@
   #v(3mm)
   #text(size: 12pt)[Manuscript ID: LOREM-IPSUM-1234569] \
   #text(size: 12pt)[Title: A Paper about Things and Stuff]
-  #v(2mm)
+  #v(1em)
   #datetime.today().display("[month repr:long] [day], [year]")
 ]
 
-#v(0.5em)
+#v(1em)
 
 // Just in case editor has written something
 // = Associate Editor

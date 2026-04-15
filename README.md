@@ -16,7 +16,7 @@ Color-coded boxes distinguish reviewer comments, responses, and changes at a gla
 
 ## Usage
 
-1. Pick your format — `rebuttal.tex` (LaTeX) or `rebuttal.typ` (Typst)
+1. Pick your format — `rebuttal.tex` (LaTeX) or `rebuttal-typst.typ` (Typst)
 2. Fill in manuscript ID, title, and responses
 3. Compile locally or use an online editor (see below)
 
@@ -25,7 +25,7 @@ Color-coded boxes distinguish reviewer comments, responses, and changes at a gla
 No local installation needed — copy the template file to one of these:
 
 - **LaTeX**: Upload `rebuttal.tex` to [Overleaf](https://www.overleaf.com/)
-- **Typst**: Upload `rebuttal.typ` to [typst.app](https://typst.app/)
+- **Typst**: Upload `rebuttal-typst.typ` to [typst.app](https://typst.app/)
 
 ### Local builds
 
@@ -70,4 +70,3 @@ make clean               # Remove all generated files
   ]
 ]
 ```
-
