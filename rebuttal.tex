@@ -20,6 +20,23 @@
 \definecolor{mygreen}{rgb}{0.4, 0.8, 0.4}
 % \definecolor{myred}{rgb}{.8, 0.3, 0.3}
 
+% --- Counters for automatic numbering ---
+\newcounter{reviewer}
+\newcounter{question}[reviewer] % resets with each new reviewer
+
+\newcommand{\currentlabel}{R\arabic{reviewer}-Q\arabic{question}}
+
+% \reviewer increments automatically, \reviewer[N] sets explicit number
+\newcommand{\reviewer}[1][]{%
+  \ifx\\#1\\%
+    \stepcounter{reviewer}%
+  \else%
+    \setcounter{reviewer}{#1}%
+  \fi%
+  \setcounter{question}{0}%
+  \section*{Reviewer \arabic{reviewer}}%
+}
+
 % Shared tcolorbox style
 \tcbset{
   rebuttalbox/.style={
@@ -30,13 +47,16 @@
 }
 
 \newcommand{\issue}[1]{%
-\begin{tcolorbox}[rebuttalbox, colback=white, before upper={\emergencystretch=3em}]
+\stepcounter{question}%
+\begin{tcolorbox}[rebuttalbox, colback=white, before upper={\emergencystretch=3em},
+    title={\textbf{\currentlabel}}, fonttitle=\small, coltitle=black,
+    attach title to upper={\par\medskip}]
   #1
 \end{tcolorbox}
 }
 \newcommand{\answer}[1]{%
 \begin{tcolorbox}[rebuttalbox, colback=mygray]
-    {\it\footnotesize Response}\\[.5em]
+    {\it\footnotesize \currentlabel{} --- Response}\\[.5em]
     #1
 \end{tcolorbox}
 }
@@ -80,7 +100,7 @@
 
 % \newpage
 
-\section*{Reviewer 1}
+\reviewer[1]
 
 \issue{The thing is bad in ways because of stuff}
 
@@ -96,7 +116,7 @@
 % If you want to separate reviewers cleanly
 % \newpage
 
-\section*{Reviewer 2}
+\reviewer[2]
 
 \issue{I don't like your face}
 
