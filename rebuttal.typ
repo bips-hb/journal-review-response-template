@@ -2,10 +2,24 @@
 #set text(font: "New Computer Modern", size: 11pt)
 #set par(spacing: 0.65em)
 #show heading.where(level: 1): set block(above: 1.2em, below: 0.5em)
+// Issue figures: no caption, no extra spacing, left-aligned
+#show figure.where(kind: "issue"): set figure(gap: 0pt)
+#show figure.where(kind: "issue"): set align(left)
+#show figure.where(kind: "issue"): it => it.body
+// Cross-references: @R1-Q1 prints "R1-Q1" as link
+#show ref: it => {
+  if it.element != none and it.element.func() == figure and it.element.has("kind") and it.element.kind == "issue" {
+    link(it.element.location(), it.element.counter.display(it.element.numbering))
+  } else {
+    it
+  }
+}
 
-// --- Colors ---
-#let mygray = luma(230)
-#let mygreen = rgb(102, 204, 102)
+// --- Colors (matching LaTeX version) ---
+#let mygray = rgb(230, 230, 230)   // LaTeX: {.9, .9, .9}
+#let mygreen = rgb(102, 204, 102)  // LaTeX: {0.4, 0.8, 0.4}
+#let mycyan = rgb(0, 255, 255)     // LaTeX: cyan
+#let myorange = rgb(255, 165, 0)   // LaTeX: orange
 
 // --- Counters ---
 #let _reviewer-counter = counter("reviewer")
@@ -45,20 +59,29 @@
   context heading(level: 1, numbering: none, "Reviewer " + str(_reviewer-counter.get().first()))
 }
 
-#let issue(body) = {
+#let issue(lbl: none, body) = {
   _question-counter.step()
   v(0.3em)
-  context block(
-    width: 100%,
-    fill: white,
-    inset: 8pt,
-    radius: 0pt,
-    {
-      text(weight: "bold", size: 0.9em, _current-label())
-      v(0.2em)
-      body
-    },
-  )
+  context {
+    let tag = _current-label()
+    let fig = figure(
+      kind: "issue",
+      supplement: none,
+      numbering: _ => tag,
+      block(
+        width: 100%,
+        fill: white,
+        inset: 8pt,
+        radius: 0pt,
+        {
+          text(weight: "bold", size: 0.9em, tag)
+          v(0.2em)
+          body
+        },
+      ),
+    )
+    if lbl != none { [#fig #lbl] } else { fig }
+  }
 }
 
 #let answer(body) = {
@@ -77,13 +100,13 @@
 )
 
 #let issuetodo(body) = _rebuttal-box(
-  fill: aqua.lighten(20%),
+  fill: mycyan,
   label: "TODO (main author)",
   body,
 )
 
 #let issueothers(body) = _rebuttal-box(
-  fill: orange.lighten(40%),
+  fill: myorange,
   label: "TODO (co-authors)",
   body,
 )
@@ -109,7 +132,7 @@
 
 #reviewer(n: 1)
 
-#issue[The thing is bad in ways because of stuff]
+#issue(lbl: <R1-Q1>)[The thing is bad in ways because of stuff]
 
 #answer[
   We fixed the thing about the stuff.
@@ -138,7 +161,7 @@
 #issue[I don't like everyone elses's face]
 
 #answer[
-  Oh no as well
+  Oh no as well (see also our response to @R1-Q1).
 
   #issueothers[
     Move to Guatemala and become sheep herders

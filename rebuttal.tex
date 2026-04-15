@@ -5,6 +5,8 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{breakable}
 \usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
 % \usepackage{soul} % provides \hl{} for highlighting text
 
 % Uncomment as needed
@@ -20,11 +22,16 @@
 \definecolor{mygreen}{rgb}{0.4, 0.8, 0.4}
 % \definecolor{myred}{rgb}{.8, 0.3, 0.3}
 
-% --- Counters for automatic numbering ---
+% --- Counters for automatic numbering and cross-referencing ---
 \newcounter{reviewer}
 \newcounter{question}[reviewer] % resets with each new reviewer
 
-\newcommand{\currentlabel}{R\arabic{reviewer}-Q\arabic{question}}
+\renewcommand{\thequestion}{R\arabic{reviewer}-Q\arabic{question}}
+\newcommand{\currentlabel}{\thequestion}
+
+% cleveref: \cref{R1-Q2} prints "R1-Q2" (no prefix needed)
+\crefformat{question}{#2R\arabic{reviewer}-Q#1#3}
+\Crefformat{question}{#2R\arabic{reviewer}-Q#1#3}
 
 % \reviewer increments automatically, \reviewer[N] sets explicit number
 \newcommand{\reviewer}[1][]{%
@@ -47,7 +54,8 @@
 }
 
 \newcommand{\issue}[1]{%
-\stepcounter{question}%
+\refstepcounter{question}%
+\label{\currentlabel}%
 \begin{tcolorbox}[rebuttalbox, colback=white, before upper={\emergencystretch=3em},
     title={\textbf{\currentlabel}}, fonttitle=\small, coltitle=black,
     attach title to upper={\par\medskip}]
@@ -133,7 +141,7 @@
 \issue{I don't like everyone elses's face}
 
 \answer{
-  Oh no as well
+  Oh no as well (see also our response to \cref{R1-Q1}).
 
   \issueothers{
     Move to Guatemala and become sheep herders
