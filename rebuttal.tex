@@ -49,12 +49,14 @@
 
 \newcommand{\issuetodo}[1]{%
 \begin{tcolorbox}[rebuttalbox, colback=cyan]
+    \hfill{\it\footnotesize TODO (main author)}\\[.5em]
     #1
 \end{tcolorbox}
 }
 
 \newcommand{\issueothers}[1]{%
 \begin{tcolorbox}[rebuttalbox, colback=orange]
+    \hfill{\it\footnotesize TODO (co-authors)}\\[.5em]
     #1
 \end{tcolorbox}
 }
@@ -106,6 +108,19 @@
   }
 
 }
+
+
+\issue{I don't like everyone elses's face}
+
+\answer{
+  Oh no as well
+
+  \issueothers{
+    Move to Guatemala and become sheep herders
+  }
+
+}
+
 
 % Include if you need citations
 % \bibliographystyle{abbrvnat}
