@@ -46,6 +46,7 @@
     {
       if label != none {
         align(label-align, text(size: 0.8em, style: "italic", label))
+        v(0.2em)
       }
       body
     },
@@ -92,7 +93,7 @@
 #let answer(body) = {
   context _rebuttal-box(
     fill: mygray,
-    label: _current-label() + " — Response",
+    label: _current-label() + ": Response",
     label-align: left,
     body,
   )
