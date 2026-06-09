@@ -12,7 +12,7 @@ all: rebuttal.pdf rebuttal-typst.pdf ## Build both PDFs
 rebuttal.pdf: $(TEX) ## Build LaTeX PDF
 	latexmk -pdf -halt-on-error $<
 
-rebuttal-typst.pdf: $(TYP) ## Build Typst PDF
+rebuttal-typst.pdf: $(TYP) rebuttal-template.typ ## Build Typst PDF
 	typst compile $< $@
 
 .PHONY: tidy
