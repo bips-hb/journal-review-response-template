@@ -8,10 +8,10 @@
 // Just in case the editor has written something:
 // #issue[Dear Dr. NAME,]
 
-// #reviewer(n: 1) sets the number used in R<n>-Q<q> tags.
-// Pass name: to override the heading, e.g. when reviewers are
-// identified by something other than a plain number:
-//   #reviewer(n: 1, name: "Reviewer (1-review-5)")
+// #reviewer(n: 1) sets the number used in R<n>-Q<q> tags and the heading.
+// Pass name: to append a parenthetical, e.g. when reviewers are identified
+// by the editor's comment file rather than a plain number:
+//   #reviewer(n: 1, name: "1-review-5")  // -> "Reviewer 1 (1-review-5)"
 #reviewer(n: 1)
 
 #issue(lbl: <R1-Q1>)[The thing is bad in ways because of stuff]

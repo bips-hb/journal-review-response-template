@@ -43,8 +43,9 @@
   )
 }
 
-// #reviewer(n: N) sets the reviewer number used in R<n>-Q<q> tags.
-// name: overrides the heading text (defaults to "Reviewer <n>").
+// #reviewer(n: N) sets the reviewer number used in R<n>-Q<q> tags and the
+// "Reviewer N" heading. name: appends a parenthetical to that heading, e.g.
+// #reviewer(n: 1, name: "1-review-5") -> "Reviewer 1 (1-review-5)".
 #let reviewer(n: none, name: none) = {
   if n == none {
     _reviewer-counter.step()
@@ -53,7 +54,8 @@
   }
   _question-counter.update(0)
   context {
-    let title = if name != none { name } else { "Reviewer " + str(_reviewer-counter.get().first()) }
+    let num = "Reviewer " + str(_reviewer-counter.get().first())
+    let title = if name != none { num + " (" + name + ")" } else { num }
     heading(level: 1, numbering: none, title)
   }
 }

@@ -93,11 +93,12 @@ issues:
 ```
 
 `#reviewer(n: N)` sets the number used in the `RN-Q…` cross-reference tags and
-prints a `Reviewer N` heading. Pass `name:` to override the heading when
-reviewers are identified by something other than a plain number:
+prints a `Reviewer N` heading. Pass `name:` to append a parenthetical to that
+heading, e.g. when reviewers are identified by the editor's comment file rather
+than a plain number:
 
 ```typst
-#reviewer(n: 5, name: "Reviewer (1-review-5)")
+#reviewer(n: 1, name: "1-review-5")  // -> "Reviewer 1 (1-review-5)"
 ```
 
 Each `#issue` takes an optional label for cross-referencing, e.g.
